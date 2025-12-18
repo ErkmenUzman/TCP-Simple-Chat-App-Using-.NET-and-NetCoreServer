@@ -1,0 +1,70 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Siyah\\Desktop\\erkmen\\NetCoreServer_Implementations\\TCP-UDP-NetCoreServer8.0\\TCP-UDP-NetCoreServer8.0\\TCP-NetCoreServer8.0.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Siyah\\Desktop\\erkmen\\NetCoreServer_Implementations\\TCP-UDP-NetCoreServer8.0\\TCP-UDP-NetCoreServer8.0\\TCP-NetCoreServer8.0.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Siyah\\Desktop\\erkmen\\NetCoreServer_Implementations\\TCP-UDP-NetCoreServer8.0\\TCP-UDP-NetCoreServer8.0\\TCP-NetCoreServer8.0.csproj",
+        "projectName": "TCP-NetCoreServer8.0",
+        "projectPath": "C:\\Users\\Siyah\\Desktop\\erkmen\\NetCoreServer_Implementations\\TCP-UDP-NetCoreServer8.0\\TCP-UDP-NetCoreServer8.0\\TCP-NetCoreServer8.0.csproj",
+        "packagesPath": "C:\\Users\\Siyah\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Siyah\\Desktop\\erkmen\\NetCoreServer_Implementations\\TCP-UDP-NetCoreServer8.0\\TCP-UDP-NetCoreServer8.0\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Siyah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Siyah\\Desktop\\erkmen\\NetCoreServer\\source\\NetCoreServer": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

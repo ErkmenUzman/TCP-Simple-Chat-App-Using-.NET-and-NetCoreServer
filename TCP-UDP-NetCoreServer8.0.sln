@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCP-NetCoreServer8.0", "TCP-UDP-NetCoreServer8.0\TCP-NetCoreServer8.0.csproj", "{73780BDE-D0E8-4C94-9775-FC67819E685C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatTCPIP", "ChatTCPIP\ChatTCPIP.csproj", "{902C3321-FB30-47B9-B297-70ECC227E0F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73780BDE-D0E8-4C94-9775-FC67819E685C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73780BDE-D0E8-4C94-9775-FC67819E685C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73780BDE-D0E8-4C94-9775-FC67819E685C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73780BDE-D0E8-4C94-9775-FC67819E685C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{902C3321-FB30-47B9-B297-70ECC227E0F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{902C3321-FB30-47B9-B297-70ECC227E0F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{902C3321-FB30-47B9-B297-70ECC227E0F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{902C3321-FB30-47B9-B297-70ECC227E0F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66BDB552-0343-459F-802C-1563D4A0F813}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "a4rrz76X5npAU79b/Ahobe1yr+/dzrHgeajHpcV1INlmp0TeBNcgEY9Vr8LtF28l7JinNxFPZPdHqd/A537wyQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Siyah\\Desktop\\erkmen\\NetCoreServer_Implementations\\TCP-UDP-NetCoreServer8.0\\TCP-UDP-NetCoreServer8.0\\TCP-NetCoreServer8.0.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Siyah\\.nuget\\packages\\system.configuration.configurationmanager\\10.0.1\\system.configuration.configurationmanager.10.0.1.nupkg.sha512",
+    "C:\\Users\\Siyah\\.nuget\\packages\\system.diagnostics.eventlog\\10.0.1\\system.diagnostics.eventlog.10.0.1.nupkg.sha512",
+    "C:\\Users\\Siyah\\.nuget\\packages\\system.security.cryptography.protecteddata\\10.0.1\\system.security.cryptography.protecteddata.10.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

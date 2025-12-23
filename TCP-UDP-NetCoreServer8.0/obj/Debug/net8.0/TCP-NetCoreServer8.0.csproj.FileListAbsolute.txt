@@ -23,3 +23,4 @@ C:\Users\Siyah\Desktop\erkmen\NetCoreServer_Implementations\TCP-UDP-NetCoreServe
 C:\Users\Siyah\Desktop\erkmen\NetCoreServer_Implementations\TCP-UDP-NetCoreServer8.0\TCP-UDP-NetCoreServer8.0\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Siyah\Desktop\erkmen\NetCoreServer_Implementations\TCP-UDP-NetCoreServer8.0\TCP-UDP-NetCoreServer8.0\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.Messages.dll
 C:\Users\Siyah\Desktop\erkmen\NetCoreServer_Implementations\TCP-UDP-NetCoreServer8.0\TCP-UDP-NetCoreServer8.0\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll
+C:\Users\Siyah\Desktop\erkmen\NetCoreServer_Implementations\TCP-UDP-NetCoreServer8.0\TCP-UDP-NetCoreServer8.0\obj\Debug\net8.0\TCP-NetCoreServer8.0.sourcelink.json

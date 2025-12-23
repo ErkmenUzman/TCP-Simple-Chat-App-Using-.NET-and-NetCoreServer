@@ -53,7 +53,6 @@
             MessageLogBox.Size = new Size(638, 319);
             MessageLogBox.TabIndex = 1;
             MessageLogBox.Text = "";
-            MessageLogBox.TextChanged += MessageLogBox_TextChanged;
             // 
             // txtMessageBox
             // 

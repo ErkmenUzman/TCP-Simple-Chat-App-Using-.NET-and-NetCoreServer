@@ -21,3 +21,4 @@ C:\Users\Siyah\Desktop\erkmen\NetCoreServer_Implementations\TCP-UDP-NetCoreServe
 C:\Users\Siyah\Desktop\erkmen\NetCoreServer_Implementations\TCP-UDP-NetCoreServer8.0\ChatTCPIP\bin\Debug\net8.0-windows\NetCoreServer.xml
 C:\Users\Siyah\Desktop\erkmen\NetCoreServer_Implementations\TCP-UDP-NetCoreServer8.0\ChatTCPIP\obj\Debug\net8.0-windows\ChatTCPIP.csproj.CopyComplete
 C:\Users\Siyah\Desktop\erkmen\NetCoreServer_Implementations\TCP-UDP-NetCoreServer8.0\ChatTCPIP\bin\Debug\net8.0-windows\ChatTCPIP.dll.config
+C:\Users\Siyah\Desktop\erkmen\NetCoreServer_Implementations\TCP-UDP-NetCoreServer8.0\ChatTCPIP\obj\Debug\net8.0-windows\ChatTCPIP.sourcelink.json

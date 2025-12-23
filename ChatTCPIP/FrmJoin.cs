@@ -24,7 +24,17 @@ namespace ChatTCPIP
                 MessageBox.Show("Please enter a username.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            AppSession.Username = JoinTextBox.Text.Trim();
+
+            string name = JoinTextBox.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(name) || name.Contains('|') || name.Contains(','))
+            {
+                MessageBox.Show("Invalid username.");
+                return;
+            }
+
+            AppSession.Username = name;
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -53,16 +53,10 @@ namespace ChatTCPIP
 
             if (string.IsNullOrWhiteSpace(message)) return;
 
-            // Send without accidental spaces: MSG|TargetUser|ActualMessage
-            _tcpClient?.SendAsync($"MSG|{targetUser}|{message}");
+            ((ChatClient)_tcpClient)?.SendPacket($"MSG|{targetUser}|{message}");
 
-            AppendLog($"To {targetUser}: {message}");
+            //AppendLog($"To {targetUser}: {message}");
             txtMessageBox.Clear();
-        }
-
-        private void MessageLogBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void FrmChat_Load(object sender, EventArgs e)
@@ -79,7 +73,7 @@ namespace ChatTCPIP
             {
                 AppendLog("Connected to the server.");
                 var joinMessage = $"JOIN|{AppSession.Username}";
-                _tcpClient?.SendAsync(joinMessage);
+                ((ChatClient)_tcpClient)?.SendPacket(joinMessage);
                 SendButton.Enabled = true;
             }));
         }

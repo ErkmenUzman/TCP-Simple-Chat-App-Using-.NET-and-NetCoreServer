@@ -2,15 +2,32 @@
 using System.Net;
 using System.Text;
 using NetCoreServer;
+using Buffer = System.Buffer;
 using System.Configuration;
 using System.Collections.Concurrent;
 
 namespace ChatTCPIP
 {
-    // 1. Logic for an individual user connection
+
     class ChatSession : TcpSession
     {
+
+        private readonly List<byte> _receiveBuffer = new List<byte>();
+
         public ChatSession(TcpServer server) : base(server) { }
+
+        public bool SendPacket(string message)
+        {
+            byte[] payload = Encoding.UTF8.GetBytes(message);
+
+            byte[] header = BitConverter.GetBytes(IPAddress.HostToNetworkOrder(payload.Length));
+
+            byte[] packet = new byte[header.Length + payload.Length];
+            Buffer.BlockCopy(header, 0, packet, 0, header.Length);
+            Buffer.BlockCopy(payload, 0, packet, header.Length, payload.Length);
+
+            return SendAsync(packet);
+        }
 
         protected override void OnConnected()
         {
@@ -21,17 +38,51 @@ namespace ChatTCPIP
         {
             var server = (ChatServer)Server;
 
-            // Remove the user so they aren't in the list anymore
             if (server.ConnectedUsers.TryRemove(Id, out string? username))
             {
-                Console.WriteLine($"{username} left. Updating list...");
+                Console.WriteLine($"[LEAVE] {username} (ID: {Id}) disconnected.");
+
                 server.UpdateUserList();
             }
         }
 
         protected override void OnReceived(byte[] buffer, long offset, long size)
         {
-            string message = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
+            // 1. Add new data to our persistent buffer
+            byte[] incoming = new byte[size];
+            Buffer.BlockCopy(buffer, (int)offset, incoming, 0, (int)size);
+            _receiveBuffer.AddRange(incoming);
+
+            // 2. Try to process as many packets as possible
+            while (_receiveBuffer.Count >= 4)
+            {
+                // Read the 4-byte header
+                byte[] headerBytes = _receiveBuffer.GetRange(0, 4).ToArray();
+                int packetSize = IPAddress.NetworkToHostOrder(BitConverter.ToInt32(headerBytes, 0));
+
+                // Do we have the full payload yet?
+                if (_receiveBuffer.Count >= 4 + packetSize)
+                {
+                    // Extract payload
+                    byte[] payloadBytes = _receiveBuffer.GetRange(4, packetSize).ToArray();
+                    string message = Encoding.UTF8.GetString(payloadBytes);
+
+                    // Remove processed data from buffer
+                    _receiveBuffer.RemoveRange(0, 4 + packetSize);
+
+                    // Handle the logic
+                    ProcessMessage(message);
+                }
+                else
+                {
+                    // Wait for more data
+                    break;
+                }
+            }
+        }
+
+        private void ProcessMessage(string message)
+        {
             var server = (ChatServer)Server;
 
             if (message.StartsWith("JOIN|"))
@@ -42,21 +93,25 @@ namespace ChatTCPIP
             }
             else if (message.StartsWith("MSG|"))
             {
-                // Split: [0]MSG, [1]TargetUser, [2]Content
-                var parts = message.Split('|');
+                var parts = message.Split('|', 3);
                 if (parts.Length >= 3)
                 {
                     string targetName = parts[1];
                     string content = parts[2];
-                    string senderName = server.ConnectedUsers.ContainsKey(Id) ? server.ConnectedUsers[Id] : "Unknown";
+                    string senderName = server.ConnectedUsers.GetValueOrDefault(Id, "Unknown");
 
-                    // Find the ID of the target user
-                    var targetSessionId = server.ConnectedUsers.FirstOrDefault(x => x.Value == targetName).Key;
-
-                    if (targetSessionId != Guid.Empty)
+                    var targetSession = server.GetSessionByName(targetName);
+                    if (targetSession != null)
                     {
-                        // Send only to the target
-                        server.FindSession(targetSessionId)?.SendAsync($"{senderName}: {content}");
+                        // Send to the Target
+                        targetSession.SendPacket($"[PM from {senderName}]: {content}");
+
+                        // Also send a confirmation back to the Sender
+                        this.SendPacket($"[To {targetName}]: {content}");
+                    }
+                    else
+                    {
+                        this.SendPacket($"[System]: User '{targetName}' is not online.");
                     }
                 }
             }
@@ -86,18 +141,32 @@ namespace ChatTCPIP
             Console.WriteLine($"Chat server error: {error}");
         }
 
+        public ChatSession? GetSessionByName(string name)
+        {
+            var match = ConnectedUsers
+                .FirstOrDefault(x => string.Equals(x.Value, name, StringComparison.OrdinalIgnoreCase));
+
+            if (match.Equals(default(KeyValuePair<Guid, string>)))
+                return null;
+
+            return (ChatSession?)FindSession(match.Key);
+
+        }
+
         public void UpdateUserList()
         {
-            // Get all names that aren't empty
             var names = ConnectedUsers.Values.Where(n => !string.IsNullOrEmpty(n)).ToList();
-
-            // Create the protocol string
             string listMessage = "USERLIST|" + string.Join(",", names);
 
-            // Send to everyone
-            Multicast(listMessage);
+            Console.WriteLine($"[UPDATE] Total Clients: {names.Count} | List: {string.Join(", ", names)}");
 
-            Console.WriteLine($"[BROADCAST] Sent user list: {string.Join(", ", names)}");
+            foreach (var session in Sessions.Values)
+            {
+                if (session.IsConnected)
+                {
+                    ((ChatSession)session).SendPacket(listMessage);
+                }
+            }
         }
     }
 
